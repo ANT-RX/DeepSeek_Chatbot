@@ -1,7 +1,7 @@
 import os
 from openai import OpenAI
 from dotenv import load_dotenv
-from .include import chat
+from include import chat
 
 # Cargamos las claves de acceso de la API
 load_dotenv()
@@ -15,7 +15,8 @@ max_tok = 100
 
 try:
     usr_prompt = input("Type your answer:")
-    chat(client, sys_prompt, usr_prompt, max_tok)
-    print(chat.answer)
+    chat_instance = chat(client, sys_prompt, usr_prompt, max_tok)
+    chat_response = chat_instance.answer()
+    print(chat_response.choices[0].message.content)
 except ValueError as e:
     print(f'Error ocurrido: {e}')

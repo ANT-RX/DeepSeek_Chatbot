@@ -21,5 +21,5 @@ class chat:
             stream=False,
             max_tokens=self.max_tok
         )
-        return response.choices[0].message.content
+        return response
     
