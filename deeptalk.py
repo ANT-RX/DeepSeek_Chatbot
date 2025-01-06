@@ -1,23 +1,21 @@
-# Please install OpenAI SDK first: `pip3 install openai`
-from os import getenv
-import json
-from dotenv import load_dotenv
+import os
 from openai import OpenAI
+from dotenv import load_dotenv
+from .include import chat
 
+# Cargamos las claves de acceso de la API
 load_dotenv()
+DeepSeek_Key = os.getenv('DEEPSEEK_API_KEY')
 
-DeepSeek_Key = getenv('DEEPSEEK_API_KEY')
-
+# Crea un cliente con el url de la API y la clave de la API
 client = OpenAI(api_key=DeepSeek_Key, base_url="https://api.deepseek.com")
 
-response = client.chat.completions.create(
-    model="deepseek-chat",
-    messages=[
-        {"role": "system", "content": "You are a helpful assistant"},
-        {"role": "user", "content": "Podrías traducir el siguiente texto inglés: Tengo que ir a dormir, sin embargo, debo terminar las pruebas de la API"},
-    ],
-    stream=False,
-    max_tokens=300
-)
+sys_prompt = "Eres un asistente amable."
+max_tok = 100
 
-print(response.choices[0].message.content)
+try:
+    usr_prompt = input("Type your answer:")
+    chat(client, sys_prompt, usr_prompt, max_tok)
+    print(chat.answer)
+except ValueError as e:
+    print(f'Error ocurrido: {e}')
