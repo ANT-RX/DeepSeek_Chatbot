@@ -1,6 +1,8 @@
-#Chatbot empleando DeepSeek
+# Chatbot empleando DeepSeek
+
 El Chatbot tiene como finalidad pertenecer a una página web o app local, con la que los usuarios pueden pedir ayuda de como emplearla.
 O para preguntar los diferentes precios o productos.
 
 ## Proyectos
+
 En cada rama del proyecto estará una aplicación, por lo que pueden encontrar varias maneras de emplear el bot o sus implementaciones.
